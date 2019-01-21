@@ -3,6 +3,8 @@ import java.util.Random;
 import java.util.HashMap;
 import java.util.*;
 
+
+
 /**
  * ポーカークラス。
  *  HashMap<Integer, String> pattern; //トランプの絵柄の情報
@@ -44,12 +46,12 @@ public class Poker extends Game {
 
             int design = random.nextInt(3);
             int your_card_number = getPlayingcard()[design][random.nextInt(CARD_LENGHT)];
-            if (check(design, your_card_number)) {
+            if (check(design, your_card_number,design_card,card_list,i)) {
                 i -= 1;
-            } else {
+            }else {
                 design_card[i] = pattern.get(design);
                 card_list[i] = your_card_number;
-                System.out.println(design_card[i]+card_list[i]);
+                System.out.println(design_card[i] + card_list[i]);
             }
         }
         card_design_check(design_card);
@@ -60,17 +62,24 @@ public class Poker extends Game {
      * カードが配られる際のすでに使用しているかどうかの判定
      * @param design 絵柄情報
      * @param card トランプの数字の情報
-     * @return 使用されていた場合はfalseを返す
+     * @param design_list 今まで格納した絵柄
+     * @param card_list 今まで格納したカード
+     * @param cunt 配列に格納する番号
+     * @return 使用されていた場合はtrueを返す
      */
-    boolean check(int design, int card) {
-        boolean used = true;
-        for (int j = 0; j < CARD_LENGHT; j++) {
-            if (getPlayingcard()[design][j] == card) {
-                used = false;
-                return used;
+    boolean check(int design , int card ,String[] design_list, int[] card_list, int cunt) {
+        boolean unused = false;
+        if(cunt !=0) {
+            for (int count = 0; count < cunt; count++) {
+                if (pattern.get(design).equals(design_list[count])) {
+                    if(card == card_list[count]) {
+                        unused = true;
+                        return unused;
+                    }
+                }
             }
         }
-        return used;
+        return unused;
     }
     /**
      * 絵柄が揃っているかどうかを判定する
@@ -84,8 +93,9 @@ public class Poker extends Game {
                 count += 1;
             }
         }
-        if(count==1)
+        if(count==1) {
             setPoint(5.5);
+        }
     }
     /**
      * 数字が揃っていて役ができているかを判定する。
