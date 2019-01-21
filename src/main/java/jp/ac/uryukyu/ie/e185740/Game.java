@@ -1,5 +1,10 @@
 package jp.ac.uryukyu.ie.e185740;
-import java.util.HashMap;
+/**
+ * gameクラス。
+ *  int[][] playingcard; //トランプの全カード情報
+ *  double point; //ポーカーにおける役の順位を数値に置き換えた変数
+ * Created by e185740 on 2018/1/21.
+ */
 public class Game {
     private int[][] playingcard;
     private double point;
@@ -9,12 +14,14 @@ public class Game {
         playingcard =  install_card();
         point = 0;
     }
+    /**
+     *トランプのカードを生成するメソッド
+     * card[i] 0 = スペード、1 = クラブ、　2 = ダイヤ、　3 = ハート
+     * @return トランプのジョーカーを抜いた情報を返す
+     */
     int[][] install_card ()
     {
-        /**
-         *
-         * card[i] 0 = スペード、1 = クラブ、　2 = ダイヤ、　3 = ハート
-         */
+
         int[][] card = new int[4][13];
         for (int i= 0;i < 4 ;i++)
         {
