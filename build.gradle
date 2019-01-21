@@ -1,6 +1,3 @@
-plugins {
-    id 'groovy'
-}
 
 plugins {
     id 'java'
@@ -14,22 +11,18 @@ sourceCompatibility = 10
 repositories {
     mavenCentral()
 }
-test {
-    useJUnitPlatform()
-    testLogging.showStandardStreams = true
-}
 dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.1.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.1.0'
 }
-jar {
+test {
+    useJUnitPlatform()
+    testLogging.showStandardStreams = true
+}
+
+jar{
     manifest {
         attributes  "Main-Class": "jp.ac.uryukyu.ie.e185740.Main"
         attributes 'Implementation-Title': 'Gradle Quickstart', 'Implementation-Version': version
     }
-}
-
-dependencies {
-    compile 'com.sparkjava:spark-core:2.3'
-    compile 'org.slf4j:slf4j-simple:1.7.25'
 }

@@ -1,11 +1,6 @@
 package jp.ac.uryukyu.ie.e185740;
-import static spark.Spark.*;
+
 import java.util.Scanner;
-
-
-import spark.Request;
-import spark.Response;
-import spark.Route;
 
 public class Main {
     public static void main(String[] args) {
@@ -17,6 +12,10 @@ public class Main {
         {
             case 1:
                 Poker poker = new Poker();
+                poker.start();
+                break;
+            case 2:
+                System.out.println("ただいま準備中です");
                 break;
             default:
                 System.out.println("そのような値は用意していません。");
